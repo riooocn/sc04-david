@@ -110,7 +110,7 @@ npm run dev
 Aplikasi sekarang sudah dapat diakses dan digunakan! Buka browser Anda dan kunjungi:  
 👉 **`http://127.0.0.1:8000`**
 
-## 📝 Bukti Implementasi (Jawaban Soal)
+## 📝 Bukti Implementasi
 
 Untuk mempermudah pengujian, berikut adalah rincian di mana fitur-fitur spesifik dari soal telah diimplementasikan:
 
@@ -119,7 +119,7 @@ Untuk mempermudah pengujian, berikut adalah rincian di mana fitur-fitur spesifik
 
 2. **Sistem Caching & Auto-Invalidation (Redis)**:
    - Data daftar produk (termasuk filternya) disimpan dalam Redis cache yang di-generate menggunakan parameter Request unik. Memanfaatkan fitur *Cache Tags* `['products']`.
-   - **Invalidation Otomatis**: Dilakukan melalui **Observer Pattern**. Kami membuat `app/Observers/ProductObserver.php` dan `app/Observers/ReviewObserver.php`. Setiap kali ada event *created*, *updated*, atau *deleted*, baris kode `Cache::tags(['products'])->flush()` akan dieksekusi secara instan.
+   - **Invalidation Otomatis**: Dilakukan melalui **Observer Pattern**. Saya membuat `app/Observers/ProductObserver.php` dan `app/Observers/ReviewObserver.php`. Setiap kali ada event *created*, *updated*, atau *deleted*, baris kode `Cache::tags(['products'])->flush()` akan dieksekusi secara instan.
 
 3. **Filter Data Dinamis**:
    - Diatur secara elegan di dalam *Query Builder* di `ProductController.php`. Filter hanya berjalan jika parameter ada (menggunakan fungsi `.when()`). Filter Many-to-Many kategori diselesaikan dengan *sub-query* `whereHas()`.
