@@ -37,8 +37,8 @@ Pastikan sistem Anda sudah menginstall perangkat lunak berikut:
 
 ### 2. Kloning Repositori
 ```bash
-git clone https://github.com/username/sc04-nama.git
-cd sc04-nama
+git clone https://github.com/riooocn/sc04-david.git
+cd sc04-david
 ```
 
 ### 3. Setup Backend (Laravel)
