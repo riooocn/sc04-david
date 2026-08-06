@@ -17,7 +17,7 @@ Proyek ini dibuat untuk menjawab tantangan fungsional berikut:
 
 ## 🛠️ Stack Teknologi
 
-- **Backend**: Laravel 11, PHP 8.3
+- **Backend**: Laravel 13, PHP 8.3
 - **Frontend**: React.js, Inertia.js, Vite
 - **Styling**: TailwindCSS
 - **Database**: MySQL
@@ -109,6 +109,25 @@ npm run dev
 
 Aplikasi sekarang sudah dapat diakses dan digunakan! Buka browser Anda dan kunjungi:  
 👉 **`http://127.0.0.1:8000`**
+
+## 📝 Bukti Implementasi (Jawaban Soal)
+
+Untuk mempermudah pengujian, berikut adalah rincian di mana fitur-fitur spesifik dari soal telah diimplementasikan:
+
+1. **Pencegahan N+1 Query**: 
+   - Diimplementasikan pada `app/Http/Controllers/ProductController.php` di *method* `index()`. Sistem tidak menggunakan relasi secara per-baris dalam *looping*, melainkan langsung mengambil nilai agregat di awal menggunakan Eloquent `withCount('reviews')` dan `withAvg('reviews', 'rating')`.
+
+2. **Sistem Caching & Auto-Invalidation (Redis)**:
+   - Data daftar produk (termasuk filternya) disimpan dalam Redis cache yang di-generate menggunakan parameter Request unik. Memanfaatkan fitur *Cache Tags* `['products']`.
+   - **Invalidation Otomatis**: Dilakukan melalui **Observer Pattern**. Kami membuat `app/Observers/ProductObserver.php` dan `app/Observers/ReviewObserver.php`. Setiap kali ada event *created*, *updated*, atau *deleted*, baris kode `Cache::tags(['products'])->flush()` akan dieksekusi secara instan.
+
+3. **Filter Data Dinamis**:
+   - Diatur secara elegan di dalam *Query Builder* di `ProductController.php`. Filter hanya berjalan jika parameter ada (menggunakan fungsi `.when()`). Filter Many-to-Many kategori diselesaikan dengan *sub-query* `whereHas()`.
+
+4. **Responsivitas UI & UX Admin**:
+   - Semua antarmuka tabel admin telah dilengkapi fitur *horizontal scroll* (`overflow-x-auto`).
+   - Terdapat peringatan berupa **Modal Dialog Konfirmasi** yang menahan laju eksekusi setiap kali administrator mencoba menyimpan perubahan data (Edit) ataupun menghapus data (Delete).
+   - Seluruh perubahan data akan langsung direspons dengan **Flash Message** (spanduk hijau di sisi atas layar).
 
 ---
 *Dibuat dan didesain untuk keperluan evaluasi technical skills kasus Backend / Fullstack.*
