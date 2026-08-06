@@ -22,4 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('products', \App\Http\Controllers\Admin\ProductController::class)->except(['show']);
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except(['show']);
+    Route::resource('reviews', \App\Http\Controllers\Admin\ReviewController::class)->except(['show']);
+});
+
 require __DIR__.'/auth.php';

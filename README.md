@@ -1,6 +1,6 @@
 # Katalog Produk Multi-Filter (LaraShop)
 
-Proyek ini adalah implementasi sistem **Katalog Produk Multi-Filter** dengan fokus utama pada optimasi *query database* (mencegah masalah N+1 Query) dan desain API/Filter yang dinamis. Proyek ini dibangun menggunakan **Laravel 11**, **React**, dan **Inertia.js**, dipadukan dengan desain *UI modern* menggunakan **TailwindCSS**.
+Proyek ini adalah implementasi sistem **Katalog Produk Multi-Filter** dengan fokus utama pada optimasi *query database* (mencegah masalah N+1 Query) dan desain API/Filter yang dinamis. Proyek ini dibangun menggunakan **Laravel 13**, **React**, dan **Inertia.js**, dipadukan dengan desain *UI modern* menggunakan **TailwindCSS**.
 
 ## 📌 Deskripsi Singkat & Requirement
 
@@ -29,7 +29,7 @@ Ikuti langkah-langkah di bawah ini untuk menjalankan proyek ini di *local enviro
 
 ### 1. Prasyarat (Prerequisites)
 Pastikan sistem Anda sudah menginstall perangkat lunak berikut:
-- PHP >= 8.2
+- PHP >= 8.3
 - Composer
 - Node.js & NPM
 - MySQL Server
@@ -80,6 +80,13 @@ Jalankan perintah ini untuk melakukan migrasi tabel sekaligus menanamkan data *s
 ```bash
 php artisan migrate:fresh --seed
 ```
+
+#### Kredensial Admin Dummy
+Setelah menjalankan seeder, sebuah akun **Admin** secara otomatis terbuat di database. Akun ini dapat digunakan untuk mengakses halaman manajemen (CRUD Produk, Kategori, dan Review).
+- **URL Login**: `http://127.0.0.1:8000/login`
+- **Email**: `admin@example.com`
+- **Password**: `password`
+
 
 ### 5. Setup Frontend (React + Vite)
 Instal seluruh modul Node.js yang dibutuhkan oleh Vite & React:

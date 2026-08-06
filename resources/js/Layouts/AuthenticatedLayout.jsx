@@ -30,6 +30,24 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    href={route('admin.products.index')}
+                                    active={route().current('admin.products.*')}
+                                >
+                                    Products
+                                </NavLink>
+                                <NavLink
+                                    href={route('admin.categories.index')}
+                                    active={route().current('admin.categories.*')}
+                                >
+                                    Categories
+                                </NavLink>
+                                <NavLink
+                                    href={route('admin.reviews.index')}
+                                    active={route().current('admin.reviews.*')}
+                                >
+                                    Reviews
+                                </NavLink>
                             </div>
                         </div>
 
@@ -134,6 +152,24 @@ export default function AuthenticatedLayout({ header, children }) {
                         >
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('admin.products.index')}
+                            active={route().current('admin.products.*')}
+                        >
+                            Products
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('admin.categories.index')}
+                            active={route().current('admin.categories.*')}
+                        >
+                            Categories
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('admin.reviews.index')}
+                            active={route().current('admin.reviews.*')}
+                        >
+                            Reviews
+                        </ResponsiveNavLink>
                     </div>
 
                     <div className="border-t border-gray-200 pb-1 pt-4">
@@ -168,6 +204,14 @@ export default function AuthenticatedLayout({ header, children }) {
                         {header}
                     </div>
                 </header>
+            )}
+
+            {usePage().props.flash.success && (
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
+                    <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                        <span className="block sm:inline">{usePage().props.flash.success}</span>
+                    </div>
+                </div>
             )}
 
             <main>{children}</main>
